@@ -9,7 +9,8 @@ import (
 
 var logger *zap.SugaredLogger
 
-func InitLogger(path,name string) {
+func InitLogger(path, name string) {
+	// TODO 支持用户配置
 	l := &lumberjack.Logger{
 		Filename:   fmt.Sprintf("%v%v.log", path, name),
 		MaxSize:    500, // megabytes
@@ -27,4 +28,8 @@ func Infof(template string, args ...interface{}) {
 
 func Errorf(template string, args ...interface{}) {
 	logger.Errorf(template, args...)
+}
+
+func Fatalf(template string, args ...interface{}) {
+	logger.Fatalf(template, args...)
 }
